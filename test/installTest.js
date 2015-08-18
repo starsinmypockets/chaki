@@ -270,7 +270,7 @@ testGitGetBranches = function (test) {
     Git._gitCloneRepo(data);
     var out = Git._gitGetAllBranches(data);
     test.ok(out.indexOf('master') >= 0);
-    test.ok(out.indexOf('origin/test1') >= 0);
+    test.ok(out.indexOf('ext/5.1.1') >= 0);
     console.log("TGGA 1", out);
     test.done();
 };
@@ -314,24 +314,18 @@ testGetBestBranch = function (test) {
   data.dest = __dirname + '/testGitRepo';
   data.senchaInfo = chaki.getSenchaInfo();
 
-  var result = Git._getBestBranch(data);
+  var result = Git.getBestBranch(data);
+  test.ok(result === 'ext/5.1.1', "Best branch is a sencha paltform and version");
   console.log("fbb 1", result);
   test.done();
-
-  // @@TODO:
-  // implement search algorithm
-  // add branches to test repo to reflect real life use cases
-  // integrate at install.js
-  // move git stuff to lib/git.js
 };
 
 testInBranch = function (test) {
     var Git = require(__dirname + '/../lib/git');
-    test.ok(Git._inBranch(["branchA", "branchB", "branchC"], "branchB"));
+    test.ok(Git._inBranch(["branchA", "branchB", "branchC"], "branchB"), "branch is in branch array");
     test.done();
 };
 
-module.exports.testInBranch = testInBranch;
 // @@TODO write unit test for Install._getPackageInstallPath()
 // var  = function (test) {
 //     console.error("TEST 4");
@@ -361,6 +355,7 @@ module.exports.testInBranch = testInBranch;
  module.exports.testGitCheckout = testGitCheckout;
  module.exports.testGitGetBranches = testGitGetBranches;
  module.exports.testGetBestBranch = testGetBestBranch;
+ module.exports.testInBranch = testInBranch;
 
 /*
  * Installer
