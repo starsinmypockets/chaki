@@ -358,6 +358,6 @@ testInBranch = function (test) {
  module.exports.testInBranch = testInBranch;
 
 /*
- * Installer
+ * Installer - major integration test here
  */
- // module.exports.testGetPackageInstallPath = testGetPackageInstallPath;
+  module.exports.testGetPackageInstallPath = testGetPackageInstallPath;
