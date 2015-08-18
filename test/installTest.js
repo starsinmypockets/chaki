@@ -221,7 +221,7 @@ var testGetSenchaVersion = function (test) {
     }
   });
 
-  senchaData = chaki.getSenchaData();
+  senchaData = chaki.getSenchaInfo();
 
   test.ok(senchaData['app.framework.version'].split(".").length > 3);
   test.ok(['ext', 'touch'].indexOf(senchaData['app.framework']) >= 0);
@@ -341,12 +341,12 @@ testInBranch = function (test) {
 /*
  * Chaki unit tests
  */
-// module.exports.testChakiRuns = testChakiRuns;
-// module.exports.testGetAppJsonPath = testGetAppJsonPath;
-// module.exports.testGetBuildXMLPath = testGetBuildXMLPath;
-// module.exports.testGetBuildXML = testGetBuildXML;
-// module.exports.testGitGetBranches = testGitGetBranches;
-// module.exports.testGetSenchaVersion = testGetSenchaVersion;
+module.exports.testChakiRuns = testChakiRuns;
+module.exports.testGetAppJsonPath = testGetAppJsonPath;
+module.exports.testGetBuildXMLPath = testGetBuildXMLPath;
+module.exports.testGetBuildXML = testGetBuildXML;
+module.exports.testGitGetBranches = testGitGetBranches;
+module.exports.testGetSenchaVersion = testGetSenchaVersion;
 //  module.exports.testGetPackageInstallPath = testGetPackageInstallPath;
 
 /**
