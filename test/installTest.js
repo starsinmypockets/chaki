@@ -238,7 +238,7 @@ tesGitClone = function (test) {
     };
 
     rmdir(data.dest, function () {
-      var code = Git._gitCloneRepo(data);
+      var code = Git.gitCloneRepo(data);
       test.ok(code === 0);
       test.ok(fs.existsSync(data.dest));
       test.ok(fs.existsSync(data.dest+'/README.md'));
@@ -267,8 +267,8 @@ testGitGetBranches = function (test) {
       dest : __dirname + '/testGitRepo'
     };
 
-    Git._gitCloneRepo(data);
-    var out = Git._gitGetAllBranches(data);
+    Git.gitCloneRepo(data);
+    var out = Git.gitGetAllBranches(data);
     test.ok(out.indexOf('master') >= 0);
     test.ok(out.indexOf('ext/5.1.1') >= 0);
     console.log("TGGA 1", out);
@@ -286,8 +286,8 @@ testGitCheckout = function (test) {
     };
 
     rmdir(data.dest, function () {
-      Git._gitCloneRepo(data);
-      var result = Git._gitCheckoutBranch({path : data.dest, branch : 'test2'});
+      Git.gitCloneRepo(data);
+      var result = Git.gitCheckoutBranch({path : data.dest, branch : 'test2'});
 
       _.each(result, function (r) {
         test.ok(r.code === 0, r + 'status ok');
@@ -347,6 +347,7 @@ testInBranch = function (test) {
 // module.exports.testGetBuildXML = testGetBuildXML;
 // module.exports.testGitGetBranches = testGitGetBranches;
 // module.exports.testGetSenchaVersion = testGetSenchaVersion;
+//  module.exports.testGetPackageInstallPath = testGetPackageInstallPath;
 
 /**
  * Git Stuff 
@@ -360,4 +361,5 @@ testInBranch = function (test) {
 /*
  * Installer - major integration test here
  */
-  module.exports.testGetPackageInstallPath = testGetPackageInstallPath;
+
+ module.exports.testInstall = testInstall;
