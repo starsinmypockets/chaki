@@ -325,6 +325,13 @@ testGetBestBranch = function (test) {
   // move git stuff to lib/git.js
 };
 
+testInBranch = function (test) {
+    var Git = require(__dirname + '/../lib/git');
+    test.ok(Git._inBranch(["branchA", "branchB", "branchC"], "branchB"));
+    test.done();
+};
+
+module.exports.testInBranch = testInBranch;
 // @@TODO write unit test for Install._getPackageInstallPath()
 // var  = function (test) {
 //     console.error("TEST 4");
