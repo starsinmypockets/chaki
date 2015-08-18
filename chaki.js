@@ -28,12 +28,14 @@ var chakiApp = chakiApp || {
         }
     },
 
+    // @@TODO implement caching - especially sencha cmd data which loads slow as heck
     // cache some stuff
     _cache : {},
 
-    _getAppJsonPath : function (packagePath) {
+    // @@TODO these three functions could be refactored to save space
+    getAppJsonPath : function (packagePath) {
         var outPath;
-        console.log("[app] _getAppJsonPath", packagePath, this.args.app);
+        console.log("[app] getAppJsonPath", packagePath, this.args.app);
         // if nothing is passed, use working directory
         if (!packagePath) {
             outPath = (this.args.app) ? path.resolve(__dirname, this.args.app, 'app.json') : path.resolve(this.curPath, './app.json');
@@ -41,12 +43,26 @@ var chakiApp = chakiApp || {
             outPath = path.resolve(packagePath);
         }
 
-        console.error("_getAppJsonPath", outPath);
+        console.error("getAppJsonPath", outPath);
         return outPath;
     },
 
-    _getBuildXMLPath : function (componentPath) {
-        console.error("[chaki] _getBuildXMLPath", componentPath, this.args.app);
+    getPackageJsonPath : function () {
+        var outPath;
+        console.log("[app] getAppJsonPath", packagePath, this.args.app);
+        // if nothing is passed, use working directory
+        if (!packagePath) {
+            outPath = (this.args.app) ? path.resolve(__dirname, this.args.app, 'app.json') : path.resolve(this.curPath, './app.json');
+        } else {  // otherwise, we're in a package directory looking for dependencies
+            outPath = path.resolve(packagePath);
+        }
+
+        console.error("getAppJsonPath", outPath);
+        return outPath;
+    },
+
+    getBuildXMLPath : function (componentPath) {
+        console.error("[chaki] getBuildXMLPath", componentPath, this.args.app);
         var outPath;
         // if nothing is passed, use working directory
         if (!componentPath) {
@@ -55,7 +71,7 @@ var chakiApp = chakiApp || {
         } else { // otherwise, we're in a package directory looking for dependencies
             outPath = path.resolve(componentPath) + '/build.xml';
         }
-        console.error("_getBuildXMLPath", outPath);
+        console.error("getBuildXMLPath", outPath);
         return outPath;
     },
 
@@ -75,8 +91,8 @@ var chakiApp = chakiApp || {
 
         dumpAppProps : function () {
             console.error("[chaki] Do dump app props");
-            var path = that._getAppJsonPath();
-            console.error(JSON.stringify(that._loadAppProperties(path), null, 4));
+            var path = that.getAppJsonPath();
+            console.error(JSON.stringify(that.loadAppProperties(path), null, 4));
         },
 
         dumpCmdProps : function () {
@@ -90,7 +106,7 @@ var chakiApp = chakiApp || {
     },
 
     // @@TODO cache this stuff in memory
-    _loadAppProperties : function (appJsonPath) {
+    loadAppProperties : function (appJsonPath) {
 
         console.error('Loading app configuration from ' + appJsonPath + '...');
 
@@ -116,7 +132,7 @@ var chakiApp = chakiApp || {
     // @@TODO cache this stuff in memory
     _loadCmdProperties : function (componentPath, props) {
         console.error('Loading Sencha CMD configuration...');
-        var  buildXMLPath = this._getBuildXMLPath(componentPath);
+        var  buildXMLPath = this.getBuildXMLPath(componentPath);
 
         if (!fs.existsSync(buildXMLPath)) {
             console.error('Unable to find build.xml at ' + buildXMLPath);

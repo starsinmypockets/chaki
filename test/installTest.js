@@ -125,22 +125,22 @@ var testChakiRuns = function (test) {
 
 var testGetAppJsonPath = function (test) {
     console.error("TEST 2");
-    var jsonPath = chaki._getAppJsonPath();
-    test.ok(jsonPath === path.resolve(__dirname, '..', 'app.json'), "_getAppJsonPath should be the same as the chaki path");
-    test.ok(chaki._getAppJsonPath('ext/123') === path.resolve(__dirname, '..', 'ext', '123'));
+    var jsonPath = chaki.getAppJsonPath();
+    test.ok(jsonPath === path.resolve(__dirname, '..', 'app.json'), "getAppJsonPath should be the same as the chaki path");
+    test.ok(chaki.getAppJsonPath('ext/123') === path.resolve(__dirname, '..', 'ext', '123'));
     test.done();
 };
 
 var testGetBuildXMLPath = function (test) {
   var appPath = path.resolve(__dirname, '..');
-  var p1 = chaki._getBuildXMLPath();
-  var p2 = chaki._getBuildXMLPath("packageName");
+  var p1 = chaki.getBuildXMLPath();
+  var p2 = chaki.getBuildXMLPath("packageName");
 
   // check from specified app dir
   chaki.args.app = "path/to/app";
 
-  var p3 = chaki._getBuildXMLPath();
-  var p4  = chaki._getBuildXMLPath("packageName");
+  var p3 = chaki.getBuildXMLPath();
+  var p4  = chaki.getBuildXMLPath("packageName");
 
   test.ok(p1 === appPath + '/build.xml');
   test.ok(p2 === appPath + '/packageName/build.xml');
