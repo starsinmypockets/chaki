@@ -125,7 +125,7 @@ var testChakiRuns = function (test) {
 
 var testGetAppJsonPath = function (test) {
     console.error("TEST 2");
-    var jsonPath = chaki.getAppJsonPath();
+    var jsonPath = chaki.getAppJsonPath('app.json');
     test.ok(jsonPath === path.resolve(__dirname, '..', 'app.json'), "getAppJsonPath should be the same as the chaki path");
     test.ok(chaki.getAppJsonPath('ext/123') === path.resolve(__dirname, '..', 'ext', '123'));
     test.done();
@@ -191,7 +191,7 @@ var testInstall = function (test) {
           method : "test",
           mockApi : mockApi,
           args : {
-              app : '/var/dev/chaki/test/testApp/sencha-workspace/SlateAdmin'
+              app : testModulePath
           }
       });
       test.ok(fs.existsSync(pkgPath + '/chaki-test-module-A'), pkgPath +"/dep exist 1");
@@ -341,22 +341,22 @@ testInBranch = function (test) {
 /*
  * Chaki unit tests
  */
-module.exports.testChakiRuns = testChakiRuns;
-module.exports.testGetAppJsonPath = testGetAppJsonPath;
-module.exports.testGetBuildXMLPath = testGetBuildXMLPath;
-module.exports.testGetBuildXML = testGetBuildXML;
-module.exports.testGitGetBranches = testGitGetBranches;
-module.exports.testGetSenchaVersion = testGetSenchaVersion;
+// module.exports.testChakiRuns = testChakiRuns;
+// module.exports.testGetAppJsonPath = testGetAppJsonPath;
+// module.exports.testGetBuildXMLPath = testGetBuildXMLPath;
+// module.exports.testGetBuildXML = testGetBuildXML;
+// module.exports.testGitGetBranches = testGitGetBranches;
+// module.exports.testGetSenchaVersion = testGetSenchaVersion;
 //  module.exports.testGetPackageInstallPath = testGetPackageInstallPath;
 
 /**
  * Git Stuff 
  */
- module.exports.tesGitClone = tesGitClone;
- module.exports.testGitCheckout = testGitCheckout;
- module.exports.testGitGetBranches = testGitGetBranches;
- module.exports.testGetBestBranch = testGetBestBranch;
- module.exports.testInBranch = testInBranch;
+ // module.exports.tesGitClone = tesGitClone;
+ // module.exports.testGitCheckout = testGitCheckout;
+ // module.exports.testGitGetBranches = testGitGetBranches;
+ // module.exports.testGetBestBranch = testGetBestBranch;
+ // module.exports.testInBranch = testInBranch;
 
 /*
  * Installer - major integration test here

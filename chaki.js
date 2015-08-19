@@ -35,32 +35,27 @@ var chakiApp = chakiApp || {
     // @@TODO these three functions could be refactored to save space
     getAppJsonPath : function (packagePath) {
         var outPath;
-        console.log("[app] getAppJsonPath", packagePath, this.args.app);
-        // if nothing is passed, use working directory
-        if (!packagePath) {
-            outPath = (this.args.app) ? path.resolve(__dirname, this.args.app, 'app.json') : path.resolve(this.curPath, './app.json');
-        } else {  // otherwise, we're in a package directory looking for dependencies
-            outPath = path.resolve(packagePath);
-        }
-
-        console.error("getAppJsonPath", outPath);
+        
+        outPath = (this.args.app) ? path.resolve(__dirname, this.args.app, packagePath) : path.resolve(this.curPath, packagePath);
         return outPath;
     },
 
-    getPackageJsonPath : function () {
+    // @@TODO these three functions could be refactored to save space
+    getPackageJsonPath : function (packagePath) {
         var outPath;
-        console.log("[app] getAppJsonPath", packagePath, this.args.app);
+        console.log("[app] getPackageJsonPath", packagePath, this.args.app);
         // if nothing is passed, use working directory
         if (!packagePath) {
-            outPath = (this.args.app) ? path.resolve(__dirname, this.args.app, 'app.json') : path.resolve(this.curPath, './app.json');
+            outPath = (this.args.app) ? path.resolve(__dirname, this.args.app, 'package.json') : path.resolve(this.curPath, './package.json');
         } else {  // otherwise, we're in a package directory looking for dependencies
             outPath = path.resolve(packagePath);
         }
 
-        console.error("getAppJsonPath", outPath);
+        console.error("getPackageJsonPath", outPath);
         return outPath;
     },
 
+    // @@TODO these three functions could be refactored to save space
     getBuildXMLPath : function (componentPath) {
         console.error("[chaki] getBuildXMLPath", componentPath, this.args.app);
         var outPath;
