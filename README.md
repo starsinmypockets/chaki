@@ -1,13 +1,17 @@
 # chaki
+Chaki is a package manager for nodejs that allows users to install Sencha packages hosted on github.
 
-#### TODO: Documentation
+# installation
+    npm install -g chaki
+or
+    git clone git@github.com:JarvusInnovations/chaki.git
 
-#### Testing
-Testing is incomplete, but you can see this run by doing the following:
+# Usage
+from Sencha project root:
+    chaki install
 
-    git clone git@github.com:starsinmypockets/chaki-test-app.git /path/to/chaki/test/testApp
-    /path/to/chaki/nodeunit test
-
-This will install the projects directory tree into testApp/sencha-workspace/packages/
-
-Modules dependencies are in moduleName/packages/ folder.
+from anywhere:
+    chaki install --app /path/to/your/sencha/app
+    
+to install a single package and its dependencies (will save packageName to app.json)
+    chaki install packageName
